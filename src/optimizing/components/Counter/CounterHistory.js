@@ -21,8 +21,9 @@ const HistoryItem = ({ count }) => {
 const CounterHistory = ({ history }) => {
   log('<CounterHistory /> rendered', 2);
 
-  // key가 변경되면 해당 컴포넌트를 리셋시키고 다시 렌더링함
+  // key가 변경되면 해당 컴포넌트를 리셋(언마운팅)시키고 다시 렌더링(마운팅)함
   // key={index} 를 쓰면 밀려날 수 있기 때문에 DB 의 id 를 써야 한다.
+
   return (
     <ol>
       {history.map((count) => (
