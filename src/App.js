@@ -3,31 +3,22 @@ import React, { useState } from 'react';
 import Counter from './optimizing/components/Counter/Counter';
 import Header from './optimizing/components/Header';
 import { log } from './optimizing/log';
+import ConfigureCounter from './optimizing/components/Counter/ConfigureCounter';
 
 const App = () => {
   log('<App /> rendered');
 
-  const [enteredNumber, setEnteredNumber] = useState(0);
   const [chosenCount, setChosenCount] = useState(0);
 
-  const changeHandler = e => {
-    setEnteredNumber(+e.target.value);
-  };
-
-  const setClickHandler = () => {
-    setChosenCount(enteredNumber);
-    setEnteredNumber(0);
-  };
+  const setCounterHandler = Number => {
+    setChosenCount(Number);
+  }
 
   return (
     <>
       <Header />
       <main>
-        <section id="configure-counter">
-          <h2>Set Counter</h2>
-          <input type="number" onChange={changeHandler} value={enteredNumber} />
-          <button onClick={setClickHandler}>Set</button>
-        </section>
+        <ConfigureCounter onSet={setCounterHandler} />
         <Counter initialCount={chosenCount} />
       </main>
     </>
