@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import IconButton from '../UI/IconButton';
 import MinusIcon from '../UI/Icons/MinusIcon';
@@ -33,13 +33,22 @@ const Counter = ({ initialCount }) => {
 
   const [counter, setCounter] = useState(initialCount);
 
-  const decrementHandler = () => {
-    setCounter((prevCounter) => prevCounter - 1);
-  };
+  // useCallback hook 는 변경사항이 없는 함수를 재생성하지 않고
+  // 재사용하는 React hook 이다.
+  // 2번째 파라미터 배열은 의존성 배열로, 안에 있는 값이 변경될 경우 함수를 재생성한다.
+  // 비워놓으면 재생성되지 않는다.
+  
+  // const decrementHandler = useCallback((a) => {
+  //   setCounter((prevCounter) => prevCounter - 1);
+  // }, [a]);
 
-  const incrementHandler = () => {
+  const decrementHandler = useCallback(() => {
+    setCounter((prevCounter) => prevCounter - 1);
+  }, []);
+
+  const incrementHandler = useCallback(() => {
     setCounter((prevCounter) => prevCounter + 1);
-  };
+  }, []);
 
   return (
     <section className="counter">
