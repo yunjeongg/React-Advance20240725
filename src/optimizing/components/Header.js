@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { log } from '../log';
 
 const Header = () => {
@@ -11,4 +11,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);
